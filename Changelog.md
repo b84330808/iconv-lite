@@ -1,3 +1,11 @@
+## Unreleased
+
+### 🐞 Bug fixes
+
+- Decode the whole Shift_JIS EUDC block - by [@b84330808](https://github.com/b84330808) in [#445](https://github.com/pillarjs/iconv-lite/pull/445)
+
+    `F941` to `F9FC` now decode to `U+E69D` to `U+E757`, as the Encoding Standard specifies. Only `F940` was mapped before, so the other 187 byte pairs in that row decoded to `U+FFFD` and then re-read the trail byte as a new character. Like the rest of the EUDC block, these characters are still not encoded.
+
 ## 1.0.0-alpha.4
 
 ### ⚠️ Breaking changes
