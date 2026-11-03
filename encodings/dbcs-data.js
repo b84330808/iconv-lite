@@ -95,7 +95,10 @@ export default {
   // GBK (~22000 chars) is an extension of CP936 that added user-mapped chars and some other.
   gbk: {
     type: "_dbcs",
-    table: function () { return [cp936(), gbkAdded()] }
+    table: function () { return [cp936(), gbkAdded()] },
+    // U+E7C7 only has the GB18030 four-byte code 8135F437, which GBK does not
+    // encode (https://encoding.spec.whatwg.org/#gb18030-encoder). It still decodes.
+    encodeSkipVals: [0x8135F437]
   },
   xgbk: "gbk",
   isoir58: "gbk",
